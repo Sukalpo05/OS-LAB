@@ -11,7 +11,7 @@
 int main(){
 	int id=fork();
 	if(id==0){
-		//sleep(1); /// intentionally making child sleep so that parent can complete execution
+		sleep(1); /// intentionally making child sleep so that parent can complete execution
 	}
 	printf("Process ID: %d and Parent ID: %d \n",getpid(),getppid());
 	
