@@ -1,59 +1,117 @@
-INTRODUCTION TO SHELL SCRIPT
+# **Introduction to Shell Script — Notes**
 
-➡️ ARRAY
+## **➡️ ARRAY**
 
+### **Declare an Array**
+
+```bash
 arr=( 1 2 3 4 )
+```
 
-1) TO GET A PARTICULAR INDEX IN ARRAY
+### **1) Get a particular index**
 
+```bash
 echo ${arr[2]}
- 
-2) TO GET ALL VALUES
- 
+```
+
+### **2) Get all values**
+
+```bash
 echo ${arr[*]}
- 
-3) TO GET LENGTH OF ARRAY
+```
 
+### **3) Get length of array**
+
+```bash
 echo ${#arr[*]}
+```
 
-4)UPDATE THE ARRAY
+### **4) Update the array**
 
+```bash
 arr+=( 5 6 7 )
+```
 
-5) KEY VALUE PAIRS IN ARRAY
+### **5) Key-Value (Associative) Arrays**
 
+```bash
 declare -A myArray
 myArray=( [name]=Paul [age]=20 )
 echo "${myArray[name]}"
+```
 
-➡️ STRINGS
- 
+---
+
+## **➡️ STRINGS**
+
+```bash
 myVar="Hello World!"
+```
 
+### **Length of string**
+
+```bash
 length=${#myVar}
+```
 
+### **Convert to Uppercase**
+
+```bash
 upper=${myVar^^}
+```
 
+### **Convert to Lowercase**
+
+```bash
 lower=${myVar,,}
+```
 
-replace=${myVar/World/Buddy}  (var name, whom, to what)
+### **Replace substring**
 
-slice=${myVar:6:11} (var name, start , how many characters)
+*(variable, target, replacement)*
 
-➡️ USER INPUT
+```bash
+replace=${myVar/World/Buddy}
+```
 
-read <var_name>
+### **Slice string**
 
-read -p "Your name" NAME
+*(variable, start_index, number_of_characters)*
 
-➡️ ARITHMETIC OPERATIONS
+```bash
+slice=${myVar:6:11}
+```
 
-1) Using let command
+---
 
+## **➡️ USER INPUT**
+
+### **Basic input**
+
+```bash
+read var_name
+```
+
+### **Input with prompt**
+
+```bash
+read -p "Your name: " NAME
+```
+
+---
+
+## **➡️ ARITHMETIC OPERATIONS**
+
+### **1) Using `let` command**
+
+```bash
 let a++
 let a=5*10
+```
 
-EXAMPLE- 
+**Example:**
+
+```bash
 a=10
 b=5
 let sum=a+b
@@ -61,13 +119,21 @@ let diff=a-b
 
 echo "Sum: $sum"
 echo "Difference: $diff"
+```
 
-2) USING DOUBLE BRACKETS
+---
 
+### **2) Using Double Brackets**
+
+Inline:
+
+```bash
 echo "Sum: $((a+b))"
+```
 
-or
+Or assigning:
 
+```bash
 a=10
 b=5
 
@@ -76,41 +142,52 @@ b=5
 
 echo "Sum: $sum"
 echo "Difference: $diff"
+```
 
-➡️ CONDITIONAL STATEMENTS
+---
 
-1) BASIC IF-ELSE
+## **➡️ CONDITIONAL STATEMENTS**
 
-if [ $marks -gt 40 ]     ### NOTE THE SPACE USED, BEFORE AND AFTER , '-gt' is '>' symbol  
+### **1) Basic If-Else**
+
+*(Remember: spaces around `[` and `]` and around operators)*
+
+```bash
+if [ $marks -gt 40 ]
 then
-
-	echo "You are PASS"
-
+    echo "You are PASS"
 else
-
-	echo "You are FAIL"
-
+    echo "You are FAIL"
 fi
+```
 
-2) CHART -
+---
 
-Equal -eq / ==
-Greaterthanorequalto -ge
-Lessthanorequalto -le
-Not Equal -ne / !=
-Greater Than -gt
-Less Than -lt
+### **2) Comparison Operator Chart**
 
-3) MULTIPLE CONDITION WITH IF ELIF ELSE
+| Operator     | Meaning                  |
+| ------------ | ------------------------ |
+| `-eq` / `==` | Equal                    |
+| `-ge`        | Greater than or equal to |
+| `-le`        | Less than or equal to    |
+| `-ne` / `!=` | Not equal                |
+| `-gt`        | Greater than             |
+| `-lt`        | Less than                |
 
+---
+
+### **3) Multiple Conditions (if-elif-else)**
+
+```bash
 if [ $marks -ge 80 ]
 then
-	echo "First Division""
+    echo "First Division"
 elif [ $marks -ge 60 ]
 then
-	echo "Second Division"
+    echo "Second Division"
 else
-	echo "Fail""
+    echo "Fail"
 fi
+```
 
-
+---
