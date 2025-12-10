@@ -313,3 +313,104 @@ do
 
 done < filename
 
+
+
+➡️ Function
+
+function myfun {
+	echo "Hi"
+}
+
+myfun() {
+	echo "Hello"
+}
+
+-----------------------------------
+
+To call the function
+
+myfun
+
+
+addition() {
+
+	local num1=$1
+	local num2=$2
+	let sum=$num1+$num2
+
+	echo “Sum of $num1 and $num2 is $sum”
+}
+
+--------------------------------------
+
+myfun 12 13
+
+FILE HANDLING IN SHELL SCRIPT
+
+1) Writing to a File
+
+i) Overwrite a file
+
+echo "Hello" > file.txt
+
+Creates file if not exists and Replaces old content completely.
+
+ii) Append to a file
+
+echo "Hello" >> file.txt
+
+Adds at the end.
+
+2) Check if File Exists
+
+if [ ! -f "$file" ]; then
+    echo "File not found!"
+    exit 1
+fi
+
+3) Reading a File Line by Line
+
+while read -r line
+do
+    echo "$line"
+done < filename
+
+4) Reading Word by Word
+
+while read -r line
+do
+    for word in $line
+    do
+        echo "$word"
+    done
+done < file
+
+5)Count Lines, Words, Characters
+
+lines=$(wc -l < file)
+words=$(wc -w < file)
+characters=$(wc -m < file)
+
+6) Extracting a Specific Line or Field
+
+
+x=`head -n 3 t.txt | tail -n 1 | cut -d " " -f 1`
+
+
+Breakdown:
+
+head -n 3 → get first 3 lines
+
+tail -n 1 → from that, get line 3
+
+cut -d " " -f 1 → get first field (space-separated)
+
+7)Copy Lines from One File to Another
+
+> output.txt  # clear file
+while IFS= read -r line
+do
+    echo "$line" >> output.txt
+done < input.txt
+
+
